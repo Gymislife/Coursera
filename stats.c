@@ -36,8 +36,52 @@ void main() {
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
   /* Other Variable Declarations Go Here */
+  unsigned char minimum;
+  unsigned char maximum;
+  unsigned char medium;
+  float mean;
   /* Statistics and Printing Functions Go Here */
-
+  //print_array(&test, SIZE); 
+  //mean = find_mean(&test, SIZE);
 }
 
-/* Add other Implementation File Code Here */
+/* Functions */
+void print_statistics () {
+
+  }
+
+void print_array (unsigned char *array, unsigned int size){
+  printf("The initial array: ");
+  for ( int i = 0; i < size; i++) {
+    printf("%d ", array[i]);
+  } 
+  printf("\n");
+  }
+
+void find_median () {
+
+  }
+
+void find_mean (unsigned char *array, unsigned int size) {
+    unsigned int sum = 0;
+    for (int i = 0; i < size; i++) {
+      sum = sum + array[i];
+    }
+    printf("The mean of the array: %.2f", ((float) sum)/size);
+    printf("\n");
+  }
+
+
+void find_maximum () {
+
+  }
+
+void find_minimum () {
+
+  }
+
+void sort_array () {
+
+  }
+
+
