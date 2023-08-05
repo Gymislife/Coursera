@@ -9,13 +9,13 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief The setup for Week 1 assignment
  *
- * <Add Extended Description Here>
+ * This file includes all the required functions implementations in the Week 1 assignment
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Hung Quang Nguyen
+ * @date 08/04/2023
  *
  */
 
@@ -38,50 +38,95 @@ void main() {
   /* Other Variable Declarations Go Here */
   unsigned char minimum;
   unsigned char maximum;
-  unsigned char medium;
+  float median;
   float mean;
+
   /* Statistics and Printing Functions Go Here */
-  //print_array(&test, SIZE); 
-  //mean = find_mean(&test, SIZE);
+  printf("The initial array: ");
+  print_array(&test, SIZE); 
+  printf("The sorted array: ");
+  sort_array(&test, SIZE);
+  print_array(&test, SIZE); 
+  mean = find_mean(&test, SIZE);
+  maximum = find_maximum(&test, SIZE);
+  minimum = find_minimum(&test, SIZE);
+  median = find_median(&test, SIZE);
+
+  print_statistics(minimum, maximum, median, mean); 
 }
 
 /* Functions */
-void print_statistics () {
-
-  }
+void print_statistics (unsigned char minimum, unsigned char maximum, float median, float mean) {
+  printf("The minimum: %d \n", minimum);
+  printf("The maximum: %d \n", maximum);
+  printf("The median: %.2f \n", median);
+  printf("The mean: %.2f \n", mean);
+}
 
 void print_array (unsigned char *array, unsigned int size){
-  printf("The initial array: ");
   for ( int i = 0; i < size; i++) {
     printf("%d ", array[i]);
   } 
   printf("\n");
   }
 
-void find_median () {
-
+float find_median (unsigned char *array, unsigned int size) {
+  unsigned char med;
+  // Odd size array
+  if (size % 2 != 0)
+  {
+    return (float)array[size/2];
+  }
+  // Even size arry
+  else
+  {
+    unsigned char mid1 = array[size/2 - 1];
+    unsigned char mid2 = array[size/2];
+    return (float)((mid1 + mid2)/2);
+  }
   }
 
-void find_mean (unsigned char *array, unsigned int size) {
-    unsigned int sum = 0;
+float find_mean (unsigned char *array, unsigned int size) {
+    int sum = 0;
+    float mean = 0 ;
     for (int i = 0; i < size; i++) {
       sum = sum + array[i];
     }
-    printf("The mean of the array: %.2f", ((float) sum)/size);
-    printf("\n");
+    mean = ((float) sum)/size;
+    return mean;
   }
 
-
-void find_maximum () {
-
+unsigned char find_maximum (unsigned char *array, unsigned int size) {
+  unsigned char max  = array[size - 1];
+  return max;
   }
 
-void find_minimum () {
-
+unsigned char find_minimum (unsigned char *array, unsigned int size) {
+  unsigned char min = array[0];
+  return min;
   }
 
-void sort_array () {
-
+void sort_array (unsigned char *array, unsigned int size) {
+  unsigned char temp;
+  unsigned char temp_min;
+  for (int i = 0; i < size - 1; i++)
+  {
+    // Find the minimum element in unsorted array
+    temp_min = i;
+    for (int j = i + 1; j < size; j++)
+    {
+      if (array[j] < array[temp_min]) 
+      {
+        temp_min = j;
+      }
+    }
+    // Swap the position
+    if (temp_min != i)
+    {
+      temp = array[temp_min];
+      array[temp_min] = array[i];
+      array[i] = temp;
+    }
   }
-
+  }
 
